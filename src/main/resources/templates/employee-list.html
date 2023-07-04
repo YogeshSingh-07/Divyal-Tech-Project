@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Employee List</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Employee List</h1>
+        
+        <table class="table table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Address</th>
+                    <th>Mobile</th>
+                    <th>Email</th>
+                    <th>DOB</th>
+                    <th>DOJ</th>
+                    <th>Gender</th>
+                    <th>Active</th>
+                    <th>Department</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="employee : ${employees}">
+                    <td th:text="${employee.id}"></td>
+                    <td th:text="${employee.empName}"></td>
+                    <td th:text="${employee.address}"></td>
+                    <td th:text="${employee.mobile}"></td>
+                    <td th:text="${employee.email}"></td>
+                    <td th:text="${employee.dob}"></td>
+                    <td th:text="${employee.doj}"></td>
+                    <td th:text="${employee.gender}"></td>
+                    <td th:text="${employee.active}"></td>
+                    <td th:text="${employee.department.deptName}"></td>
+                    <td>
+                        <a class="btn btn-primary" th:href="@{/employees/edit/{id}(id=${employee.id})}">Edit</a>
+                    </td>
+                    <td>
+                    
+                        <a class="btn btn-danger" th:href="@{/employees/delete/{id}(id=${employee.id})}">Delete</a>
+                	</tr>
+            </tbody>
+        </table>
+        
+        <a class="btn btn-success" href="/employees/add">Add Employee</a>
+        <a class="btn btn-dark" href="/departments">Department Table</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Department List</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Department List</h1>
+        
+        <table class="table table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Type</th>
+                    <th>Active</th>
+                    <th>Address/Block</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="department : ${departments}">
+                    <td th:text="${department.id}"></td>
+                    <td th:text="${department.deptName}"></td>
+                    <td th:text="${department.type}"></td>
+                    <td th:text="${department.active}"></td>
+                    <td th:text="${department.addressBlock}"></td>
+                    <td>
+                        <a class="btn btn-primary" th:href="@{/departments/edit/{id}(id=${department.id})}">Edit</a>
+                    </td>
+                    <td>
+                    	<a class="btn btn-danger" th:href="@{/departments/delete/{id}(id=${department.id})}">Delete</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <a class="btn btn-success" href="/departments/add">Add Department</a>
+        <a class="btn btn-dark" href="/employees">Employees Table</a>
+    </div>
+</body>
+</html>
